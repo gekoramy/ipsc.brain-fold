@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 import static org.junit.Assert.*;
 
 public class CutterTest {
@@ -12,8 +14,8 @@ public class CutterTest {
                 .foldRight()
                 .foldRight();
 
-        assertEquals(2, cutter.cutHorizontal(paper));
-        assertEquals(5, cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(2), cutter.cutHorizontal(paper));
+        assertEquals(BigInteger.valueOf(5), cutter.cutVertical(paper));
     }
 
     @Test
@@ -22,8 +24,8 @@ public class CutterTest {
                 .foldLeft()
                 .foldTop();
 
-        assertEquals(3, cutter.cutHorizontal(paper));
-        assertEquals(3, cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(3), cutter.cutHorizontal(paper));
+        assertEquals(BigInteger.valueOf(3), cutter.cutVertical(paper));
     }
 
     @Test
@@ -32,8 +34,8 @@ public class CutterTest {
                 .foldTop()
                 .foldRight();
 
-        assertEquals(3, cutter.cutHorizontal(paper));
-        assertEquals(3, cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(3), cutter.cutHorizontal(paper));
+        assertEquals(BigInteger.valueOf(3), cutter.cutVertical(paper));
     }
 
     @Test
@@ -43,8 +45,8 @@ public class CutterTest {
                 .foldRight()
                 .foldTop();
 
-        assertEquals(5, cutter.cutHorizontal(paper));
-        assertEquals(3, cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(5), cutter.cutHorizontal(paper));
+        assertEquals(BigInteger.valueOf(3), cutter.cutVertical(paper));
     }
 
     @Test
@@ -53,8 +55,8 @@ public class CutterTest {
                 .foldTop()
                 .foldTop();
 
-        assertEquals(2, cutter.cutVertical(paper));
-        assertEquals(5, cutter.cutHorizontal(paper));
+        assertEquals(BigInteger.valueOf(2), cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(5), cutter.cutHorizontal(paper));
     }
 
     @Test
@@ -64,13 +66,13 @@ public class CutterTest {
                 .foldTop()
                 .foldTop();
 
-        assertEquals(2, cutter.cutVertical(paper));
-        assertEquals(9, cutter.cutHorizontal(paper));
+        assertEquals(BigInteger.valueOf(2), cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(9), cutter.cutHorizontal(paper));
     }
 
     @Test
     public void LB_V() {
-        assertEquals(3, cutter.cutVertical(
+        assertEquals(BigInteger.valueOf(3), cutter.cutVertical(
                 new Paper()
                         .foldLeft()
                         .foldBottom()
