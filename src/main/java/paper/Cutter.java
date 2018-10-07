@@ -19,9 +19,7 @@ public class Cutter {
     private BigInteger cut(int folds) {
         return PIECES.computeIfAbsent(
                 folds,
-                n -> TWO.pow(folds + 1).subtract(
-                        TWO.pow(folds).subtract(BigInteger.ONE)
-                )
+                n -> TWO.pow(n).add(BigInteger.ONE)
         );
     }
 
