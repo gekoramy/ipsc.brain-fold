@@ -71,6 +71,18 @@ public class CutterTest {
     }
 
     @Test
+    public void TTTT() {
+        Paper paper = new Paper()
+                .foldTop()
+                .foldTop()
+                .foldTop()
+                .foldTop();
+
+        assertEquals(BigInteger.valueOf(2), cutter.cutVertical(paper));
+        assertEquals(BigInteger.valueOf(17), cutter.cutHorizontal(paper));
+    }
+
+    @Test
     public void LB_V() {
         assertEquals(BigInteger.valueOf(3), cutter.cutVertical(
                 new Paper()
