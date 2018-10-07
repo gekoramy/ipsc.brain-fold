@@ -25,7 +25,6 @@ public class Paper {
         return new Paper(t, r, b, l + 1);
     }
 
-
     public Paper foldRight() {
         return new Paper(t, r + 1, b, l);
     }
