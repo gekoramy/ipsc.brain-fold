@@ -1,4 +1,6 @@
 import org.junit.Test;
+import paper.Cutter;
+import paper.Paper;
 
 import java.math.BigInteger;
 

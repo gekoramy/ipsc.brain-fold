@@ -1,3 +1,5 @@
+package paper;
+
 public class Paper {
 
     final int t;
