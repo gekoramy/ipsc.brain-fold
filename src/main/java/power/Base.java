@@ -3,6 +3,7 @@ package power;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Base {
 
@@ -24,7 +25,11 @@ public class Base {
                 base.multiply(Power.base(pow(2)).pow(n / 2)));
     }
 
-    private boolean isEven(long n) {
+    public Set<Long> stored() {
+        return powers.keySet();
+    }
+
+    private boolean isEven(Long n) {
         return n % 2 == 0;
     }
 }
