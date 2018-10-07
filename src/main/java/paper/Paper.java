@@ -1,39 +1,32 @@
 package paper;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Paper {
 
-    final int t;
-    final int r;
-    final int b;
-    final int l;
+    private final Map<Fold, Long> folds = new HashMap<>();
 
     public Paper() {
-        this.t = 0;
-        this.r = 0;
-        this.b = 0;
-        this.l = 0;
     }
 
-    private Paper(int t, int r, int b, int l) {
-        this.t = t;
-        this.r = r;
-        this.b = b;
-        this.l = l;
+    private Paper(Map<Fold, Long> folds) {
+        this.folds.putAll(folds);
     }
 
-    public Paper foldLeft() {
-        return new Paper(t, r, b, l + 1);
+    public static Paper foldIt(Stream<Fold> folds) {
+        return new Paper(folds.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())));
     }
 
-    public Paper foldRight() {
-        return new Paper(t, r + 1, b, l);
+    public static Paper foldIt(Fold... folds) {
+        return foldIt(Arrays.stream(folds));
     }
 
-    public Paper foldTop() {
-        return new Paper(t + 1, r, b, l);
-    }
-
-    public Paper foldBottom() {
-        return new Paper(t, r, b + 1, l);
+    public long many(Fold fold) {
+        return folds.computeIfAbsent(fold, k -> 0L);
     }
 }

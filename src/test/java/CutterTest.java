@@ -4,7 +4,11 @@ import paper.Paper;
 
 import java.math.BigInteger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static paper.Fold.TOP;
+import static paper.Fold.RIGHT;
+import static paper.Fold.BOTTOM;
+import static paper.Fold.LEFT;
 
 public class CutterTest {
 
@@ -12,9 +16,7 @@ public class CutterTest {
 
     @Test
     public void RR() {
-        Paper paper = new Paper()
-                .foldRight()
-                .foldRight();
+        Paper paper = Paper.foldIt(RIGHT, RIGHT);
 
         assertEquals(BigInteger.valueOf(2), cutter.cutHorizontal(paper));
         assertEquals(BigInteger.valueOf(5), cutter.cutVertical(paper));
@@ -22,9 +24,7 @@ public class CutterTest {
 
     @Test
     public void RT() {
-        Paper paper = new Paper()
-                .foldLeft()
-                .foldTop();
+        Paper paper = Paper.foldIt(RIGHT, TOP);
 
         assertEquals(BigInteger.valueOf(3), cutter.cutHorizontal(paper));
         assertEquals(BigInteger.valueOf(3), cutter.cutVertical(paper));
@@ -32,9 +32,7 @@ public class CutterTest {
 
     @Test
     public void TR() {
-        Paper paper = new Paper()
-                .foldTop()
-                .foldRight();
+        Paper paper = Paper.foldIt(TOP, RIGHT);
 
         assertEquals(BigInteger.valueOf(3), cutter.cutHorizontal(paper));
         assertEquals(BigInteger.valueOf(3), cutter.cutVertical(paper));
@@ -42,10 +40,7 @@ public class CutterTest {
 
     @Test
     public void TRT() {
-        Paper paper = new Paper()
-                .foldTop()
-                .foldRight()
-                .foldTop();
+        Paper paper = Paper.foldIt(TOP, RIGHT, TOP);
 
         assertEquals(BigInteger.valueOf(5), cutter.cutHorizontal(paper));
         assertEquals(BigInteger.valueOf(3), cutter.cutVertical(paper));
@@ -53,9 +48,7 @@ public class CutterTest {
 
     @Test
     public void TT() {
-        Paper paper = new Paper()
-                .foldTop()
-                .foldTop();
+        Paper paper = Paper.foldIt(TOP, TOP);
 
         assertEquals(BigInteger.valueOf(2), cutter.cutVertical(paper));
         assertEquals(BigInteger.valueOf(5), cutter.cutHorizontal(paper));
@@ -63,10 +56,7 @@ public class CutterTest {
 
     @Test
     public void TTT() {
-        Paper paper = new Paper()
-                .foldTop()
-                .foldTop()
-                .foldTop();
+        Paper paper = Paper.foldIt(TOP, TOP, TOP);
 
         assertEquals(BigInteger.valueOf(2), cutter.cutVertical(paper));
         assertEquals(BigInteger.valueOf(9), cutter.cutHorizontal(paper));
@@ -74,11 +64,7 @@ public class CutterTest {
 
     @Test
     public void TTTT() {
-        Paper paper = new Paper()
-                .foldTop()
-                .foldTop()
-                .foldTop()
-                .foldTop();
+        Paper paper = Paper.foldIt(TOP, TOP, TOP, TOP);
 
         assertEquals(BigInteger.valueOf(2), cutter.cutVertical(paper));
         assertEquals(BigInteger.valueOf(17), cutter.cutHorizontal(paper));
@@ -87,9 +73,7 @@ public class CutterTest {
     @Test
     public void LB_V() {
         assertEquals(BigInteger.valueOf(3), cutter.cutVertical(
-                new Paper()
-                        .foldLeft()
-                        .foldBottom()
+                Paper.foldIt(LEFT, BOTTOM)
         ));
     }
 }

@@ -10,13 +10,13 @@ import java.util.Map;
 public class Cutter {
 
     private static final Base TWO = Power.base(BigInteger.valueOf(2));
-    private static final Map<Integer, BigInteger> PIECES = new HashMap<>();
+    private static final Map<Long, BigInteger> PIECES = new HashMap<>();
 
     static {
-        PIECES.put(0, BigInteger.valueOf(2));
+        PIECES.put(0L, BigInteger.valueOf(2));
     }
 
-    private BigInteger cut(int folds) {
+    private BigInteger cut(long folds) {
         return PIECES.computeIfAbsent(
                 folds,
                 n -> TWO.pow(n).add(BigInteger.ONE)
@@ -24,12 +24,12 @@ public class Cutter {
     }
 
     public BigInteger cutHorizontal(Paper paper) {
-        final int horizontal = paper.t + paper.b;
+        final long horizontal = paper.many(Fold.TOP) + paper.many(Fold.BOTTOM);
         return cut(horizontal);
     }
 
     public BigInteger cutVertical(Paper paper) {
-        final int vertical = paper.r + paper.l;
+        final long vertical = paper.many(Fold.RIGHT) + paper.many(Fold.LEFT);
         return cut(vertical);
     }
 }
